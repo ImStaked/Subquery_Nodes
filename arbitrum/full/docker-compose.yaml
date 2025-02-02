@@ -12,9 +12,9 @@ services:
       - --http.api=net,web3,eth
       - --http.corsdomain=*
       - --http.vhosts=*
-      - --http.addr=10.0.1.25
+      - --http.addr=<lan_ip>
       - --ws.port=8548
-      - --ws.addr=10.0.1.25
+      - --ws.addr=<lan_ip>
       - --ws.origins=*
       - --chain.id=42161
       - --chain.name=arb1
