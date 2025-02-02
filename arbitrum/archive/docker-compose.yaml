@@ -1,0 +1,29 @@
+services:
+  arbitrum-node:
+    image: offchainlabs/nitro-node:v3.4.0-d896e9c
+    pull_policy: always
+    container_name: arbitrum-node
+    restart: on-failure
+    ports:
+      - <lan_ip>:8547:8547
+      - <lan_ip>:8548:8548
+    command:
+      - --parent-chain.connection.url=http://<ip>:6545
+      - --http.api=net,web3,eth
+      - --http.corsdomain=*
+      - --http.vhosts=*
+      - --http.addr=<lan_ip>
+      - --ws.port=8548
+      - --ws.addr=<lan_ip>
+      - --ws.origins=*
+      - --chain.id=42161
+      - --chain.name=arb1
+      - --init.latest=archive
+      - --parent-chain.blob-client.beacon-url=http://<ip>:3500
+    networks:
+      - arbitrum
+    volumes:
+      - /home/arbitrum/.data:/data
+networks:
+  arbitrum:
+    driver: bridge
